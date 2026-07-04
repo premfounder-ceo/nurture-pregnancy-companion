@@ -13,7 +13,13 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedSymptomsRouteImport } from './routes/_authenticated/symptoms'
 import { Route as AuthenticatedSetupRouteImport } from './routes/_authenticated/setup'
+import { Route as AuthenticatedKicksRouteImport } from './routes/_authenticated/kicks'
+import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedDailyRouteImport } from './routes/_authenticated/daily'
+import { Route as AuthenticatedContractionsRouteImport } from './routes/_authenticated/contractions'
+import { Route as AuthenticatedBabyRouteImport } from './routes/_authenticated/baby'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
@@ -34,9 +40,40 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedSymptomsRoute = AuthenticatedSymptomsRouteImport.update({
+  id: '/symptoms',
+  path: '/symptoms',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSetupRoute = AuthenticatedSetupRouteImport.update({
   id: '/setup',
   path: '/setup',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedKicksRoute = AuthenticatedKicksRouteImport.update({
+  id: '/kicks',
+  path: '/kicks',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDailyRoute = AuthenticatedDailyRouteImport.update({
+  id: '/daily',
+  path: '/daily',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedContractionsRoute =
+  AuthenticatedContractionsRouteImport.update({
+    id: '/contractions',
+    path: '/contractions',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBabyRoute = AuthenticatedBabyRouteImport.update({
+  id: '/baby',
+  path: '/baby',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 
@@ -44,13 +81,25 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
+  '/baby': typeof AuthenticatedBabyRoute
+  '/contractions': typeof AuthenticatedContractionsRoute
+  '/daily': typeof AuthenticatedDailyRoute
+  '/home': typeof AuthenticatedHomeRoute
+  '/kicks': typeof AuthenticatedKicksRoute
   '/setup': typeof AuthenticatedSetupRoute
+  '/symptoms': typeof AuthenticatedSymptomsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
+  '/baby': typeof AuthenticatedBabyRoute
+  '/contractions': typeof AuthenticatedContractionsRoute
+  '/daily': typeof AuthenticatedDailyRoute
+  '/home': typeof AuthenticatedHomeRoute
+  '/kicks': typeof AuthenticatedKicksRoute
   '/setup': typeof AuthenticatedSetupRoute
+  '/symptoms': typeof AuthenticatedSymptomsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -58,20 +107,52 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
+  '/_authenticated/baby': typeof AuthenticatedBabyRoute
+  '/_authenticated/contractions': typeof AuthenticatedContractionsRoute
+  '/_authenticated/daily': typeof AuthenticatedDailyRoute
+  '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/kicks': typeof AuthenticatedKicksRoute
   '/_authenticated/setup': typeof AuthenticatedSetupRoute
+  '/_authenticated/symptoms': typeof AuthenticatedSymptomsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/onboarding' | '/setup'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/onboarding'
+    | '/baby'
+    | '/contractions'
+    | '/daily'
+    | '/home'
+    | '/kicks'
+    | '/setup'
+    | '/symptoms'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/onboarding' | '/setup'
+  to:
+    | '/'
+    | '/auth'
+    | '/onboarding'
+    | '/baby'
+    | '/contractions'
+    | '/daily'
+    | '/home'
+    | '/kicks'
+    | '/setup'
+    | '/symptoms'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/onboarding'
+    | '/_authenticated/baby'
+    | '/_authenticated/contractions'
+    | '/_authenticated/daily'
+    | '/_authenticated/home'
+    | '/_authenticated/kicks'
     | '/_authenticated/setup'
+    | '/_authenticated/symptoms'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -111,6 +192,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/symptoms': {
+      id: '/_authenticated/symptoms'
+      path: '/symptoms'
+      fullPath: '/symptoms'
+      preLoaderRoute: typeof AuthenticatedSymptomsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/setup': {
       id: '/_authenticated/setup'
       path: '/setup'
@@ -118,15 +206,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSetupRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/kicks': {
+      id: '/_authenticated/kicks'
+      path: '/kicks'
+      fullPath: '/kicks'
+      preLoaderRoute: typeof AuthenticatedKicksRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/home': {
+      id: '/_authenticated/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof AuthenticatedHomeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/daily': {
+      id: '/_authenticated/daily'
+      path: '/daily'
+      fullPath: '/daily'
+      preLoaderRoute: typeof AuthenticatedDailyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/contractions': {
+      id: '/_authenticated/contractions'
+      path: '/contractions'
+      fullPath: '/contractions'
+      preLoaderRoute: typeof AuthenticatedContractionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/baby': {
+      id: '/_authenticated/baby'
+      path: '/baby'
+      fullPath: '/baby'
+      preLoaderRoute: typeof AuthenticatedBabyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedBabyRoute: typeof AuthenticatedBabyRoute
+  AuthenticatedContractionsRoute: typeof AuthenticatedContractionsRoute
+  AuthenticatedDailyRoute: typeof AuthenticatedDailyRoute
+  AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedKicksRoute: typeof AuthenticatedKicksRoute
   AuthenticatedSetupRoute: typeof AuthenticatedSetupRoute
+  AuthenticatedSymptomsRoute: typeof AuthenticatedSymptomsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedBabyRoute: AuthenticatedBabyRoute,
+  AuthenticatedContractionsRoute: AuthenticatedContractionsRoute,
+  AuthenticatedDailyRoute: AuthenticatedDailyRoute,
+  AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedKicksRoute: AuthenticatedKicksRoute,
   AuthenticatedSetupRoute: AuthenticatedSetupRoute,
+  AuthenticatedSymptomsRoute: AuthenticatedSymptomsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
