@@ -9,38 +9,317 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedSymptomsRouteImport } from './routes/_authenticated/symptoms'
+import { Route as AuthenticatedSetupRouteImport } from './routes/_authenticated/setup'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedReportsRouteImport } from './routes/_authenticated/reports'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedPrivacyRouteImport } from './routes/_authenticated/privacy'
+import { Route as AuthenticatedNutritionRouteImport } from './routes/_authenticated/nutrition'
+import { Route as AuthenticatedMedicineRouteImport } from './routes/_authenticated/medicine'
+import { Route as AuthenticatedKicksRouteImport } from './routes/_authenticated/kicks'
+import { Route as AuthenticatedHomeRouteImport } from './routes/_authenticated/home'
+import { Route as AuthenticatedHelpRouteImport } from './routes/_authenticated/help'
+import { Route as AuthenticatedDeleteAccountRouteImport } from './routes/_authenticated/delete-account'
+import { Route as AuthenticatedDailyRouteImport } from './routes/_authenticated/daily'
+import { Route as AuthenticatedContractionsRouteImport } from './routes/_authenticated/contractions'
+import { Route as AuthenticatedBabyRouteImport } from './routes/_authenticated/baby'
+import { Route as AuthenticatedAppointmentsRouteImport } from './routes/_authenticated/appointments'
+import { Route as AuthenticatedAiRouteImport } from './routes/_authenticated/ai'
+import { Route as AuthenticatedSettingsRemindersRouteImport } from './routes/_authenticated/settings.reminders'
 
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedSymptomsRoute = AuthenticatedSymptomsRouteImport.update({
+  id: '/symptoms',
+  path: '/symptoms',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSetupRoute = AuthenticatedSetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedReportsRoute = AuthenticatedReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPrivacyRoute = AuthenticatedPrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedNutritionRoute = AuthenticatedNutritionRouteImport.update({
+  id: '/nutrition',
+  path: '/nutrition',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMedicineRoute = AuthenticatedMedicineRouteImport.update({
+  id: '/medicine',
+  path: '/medicine',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedKicksRoute = AuthenticatedKicksRouteImport.update({
+  id: '/kicks',
+  path: '/kicks',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedHomeRoute = AuthenticatedHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedHelpRoute = AuthenticatedHelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDeleteAccountRoute =
+  AuthenticatedDeleteAccountRouteImport.update({
+    id: '/delete-account',
+    path: '/delete-account',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDailyRoute = AuthenticatedDailyRouteImport.update({
+  id: '/daily',
+  path: '/daily',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedContractionsRoute =
+  AuthenticatedContractionsRouteImport.update({
+    id: '/contractions',
+    path: '/contractions',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedBabyRoute = AuthenticatedBabyRouteImport.update({
+  id: '/baby',
+  path: '/baby',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAppointmentsRoute =
+  AuthenticatedAppointmentsRouteImport.update({
+    id: '/appointments',
+    path: '/appointments',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAiRoute = AuthenticatedAiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSettingsRemindersRoute =
+  AuthenticatedSettingsRemindersRouteImport.update({
+    id: '/reminders',
+    path: '/reminders',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRoute
+  '/ai': typeof AuthenticatedAiRoute
+  '/appointments': typeof AuthenticatedAppointmentsRoute
+  '/baby': typeof AuthenticatedBabyRoute
+  '/contractions': typeof AuthenticatedContractionsRoute
+  '/daily': typeof AuthenticatedDailyRoute
+  '/delete-account': typeof AuthenticatedDeleteAccountRoute
+  '/help': typeof AuthenticatedHelpRoute
+  '/home': typeof AuthenticatedHomeRoute
+  '/kicks': typeof AuthenticatedKicksRoute
+  '/medicine': typeof AuthenticatedMedicineRoute
+  '/nutrition': typeof AuthenticatedNutritionRoute
+  '/privacy': typeof AuthenticatedPrivacyRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/settings': typeof AuthenticatedSettingsRouteWithChildren
+  '/setup': typeof AuthenticatedSetupRoute
+  '/symptoms': typeof AuthenticatedSymptomsRoute
+  '/settings/reminders': typeof AuthenticatedSettingsRemindersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRoute
+  '/ai': typeof AuthenticatedAiRoute
+  '/appointments': typeof AuthenticatedAppointmentsRoute
+  '/baby': typeof AuthenticatedBabyRoute
+  '/contractions': typeof AuthenticatedContractionsRoute
+  '/daily': typeof AuthenticatedDailyRoute
+  '/delete-account': typeof AuthenticatedDeleteAccountRoute
+  '/help': typeof AuthenticatedHelpRoute
+  '/home': typeof AuthenticatedHomeRoute
+  '/kicks': typeof AuthenticatedKicksRoute
+  '/medicine': typeof AuthenticatedMedicineRoute
+  '/nutrition': typeof AuthenticatedNutritionRoute
+  '/privacy': typeof AuthenticatedPrivacyRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/settings': typeof AuthenticatedSettingsRouteWithChildren
+  '/setup': typeof AuthenticatedSetupRoute
+  '/symptoms': typeof AuthenticatedSymptomsRoute
+  '/settings/reminders': typeof AuthenticatedSettingsRemindersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRoute
+  '/_authenticated/ai': typeof AuthenticatedAiRoute
+  '/_authenticated/appointments': typeof AuthenticatedAppointmentsRoute
+  '/_authenticated/baby': typeof AuthenticatedBabyRoute
+  '/_authenticated/contractions': typeof AuthenticatedContractionsRoute
+  '/_authenticated/daily': typeof AuthenticatedDailyRoute
+  '/_authenticated/delete-account': typeof AuthenticatedDeleteAccountRoute
+  '/_authenticated/help': typeof AuthenticatedHelpRoute
+  '/_authenticated/home': typeof AuthenticatedHomeRoute
+  '/_authenticated/kicks': typeof AuthenticatedKicksRoute
+  '/_authenticated/medicine': typeof AuthenticatedMedicineRoute
+  '/_authenticated/nutrition': typeof AuthenticatedNutritionRoute
+  '/_authenticated/privacy': typeof AuthenticatedPrivacyRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/reports': typeof AuthenticatedReportsRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRouteWithChildren
+  '/_authenticated/setup': typeof AuthenticatedSetupRoute
+  '/_authenticated/symptoms': typeof AuthenticatedSymptomsRoute
+  '/_authenticated/settings/reminders': typeof AuthenticatedSettingsRemindersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/onboarding'
+    | '/ai'
+    | '/appointments'
+    | '/baby'
+    | '/contractions'
+    | '/daily'
+    | '/delete-account'
+    | '/help'
+    | '/home'
+    | '/kicks'
+    | '/medicine'
+    | '/nutrition'
+    | '/privacy'
+    | '/profile'
+    | '/reports'
+    | '/settings'
+    | '/setup'
+    | '/symptoms'
+    | '/settings/reminders'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/onboarding'
+    | '/ai'
+    | '/appointments'
+    | '/baby'
+    | '/contractions'
+    | '/daily'
+    | '/delete-account'
+    | '/help'
+    | '/home'
+    | '/kicks'
+    | '/medicine'
+    | '/nutrition'
+    | '/privacy'
+    | '/profile'
+    | '/reports'
+    | '/settings'
+    | '/setup'
+    | '/symptoms'
+    | '/settings/reminders'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/onboarding'
+    | '/_authenticated/ai'
+    | '/_authenticated/appointments'
+    | '/_authenticated/baby'
+    | '/_authenticated/contractions'
+    | '/_authenticated/daily'
+    | '/_authenticated/delete-account'
+    | '/_authenticated/help'
+    | '/_authenticated/home'
+    | '/_authenticated/kicks'
+    | '/_authenticated/medicine'
+    | '/_authenticated/nutrition'
+    | '/_authenticated/privacy'
+    | '/_authenticated/profile'
+    | '/_authenticated/reports'
+    | '/_authenticated/settings'
+    | '/_authenticated/setup'
+    | '/_authenticated/symptoms'
+    | '/_authenticated/settings/reminders'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  OnboardingRoute: typeof OnboardingRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +327,196 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/symptoms': {
+      id: '/_authenticated/symptoms'
+      path: '/symptoms'
+      fullPath: '/symptoms'
+      preLoaderRoute: typeof AuthenticatedSymptomsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/setup': {
+      id: '/_authenticated/setup'
+      path: '/setup'
+      fullPath: '/setup'
+      preLoaderRoute: typeof AuthenticatedSetupRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/reports': {
+      id: '/_authenticated/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthenticatedReportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/privacy': {
+      id: '/_authenticated/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof AuthenticatedPrivacyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/nutrition': {
+      id: '/_authenticated/nutrition'
+      path: '/nutrition'
+      fullPath: '/nutrition'
+      preLoaderRoute: typeof AuthenticatedNutritionRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/medicine': {
+      id: '/_authenticated/medicine'
+      path: '/medicine'
+      fullPath: '/medicine'
+      preLoaderRoute: typeof AuthenticatedMedicineRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/kicks': {
+      id: '/_authenticated/kicks'
+      path: '/kicks'
+      fullPath: '/kicks'
+      preLoaderRoute: typeof AuthenticatedKicksRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/home': {
+      id: '/_authenticated/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof AuthenticatedHomeRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/help': {
+      id: '/_authenticated/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof AuthenticatedHelpRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/delete-account': {
+      id: '/_authenticated/delete-account'
+      path: '/delete-account'
+      fullPath: '/delete-account'
+      preLoaderRoute: typeof AuthenticatedDeleteAccountRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/daily': {
+      id: '/_authenticated/daily'
+      path: '/daily'
+      fullPath: '/daily'
+      preLoaderRoute: typeof AuthenticatedDailyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/contractions': {
+      id: '/_authenticated/contractions'
+      path: '/contractions'
+      fullPath: '/contractions'
+      preLoaderRoute: typeof AuthenticatedContractionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/baby': {
+      id: '/_authenticated/baby'
+      path: '/baby'
+      fullPath: '/baby'
+      preLoaderRoute: typeof AuthenticatedBabyRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/appointments': {
+      id: '/_authenticated/appointments'
+      path: '/appointments'
+      fullPath: '/appointments'
+      preLoaderRoute: typeof AuthenticatedAppointmentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/ai': {
+      id: '/_authenticated/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AuthenticatedAiRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/settings/reminders': {
+      id: '/_authenticated/settings/reminders'
+      path: '/reminders'
+      fullPath: '/settings/reminders'
+      preLoaderRoute: typeof AuthenticatedSettingsRemindersRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
   }
 }
 
+interface AuthenticatedSettingsRouteChildren {
+  AuthenticatedSettingsRemindersRoute: typeof AuthenticatedSettingsRemindersRoute
+}
+
+const AuthenticatedSettingsRouteChildren: AuthenticatedSettingsRouteChildren = {
+  AuthenticatedSettingsRemindersRoute: AuthenticatedSettingsRemindersRoute,
+}
+
+const AuthenticatedSettingsRouteWithChildren =
+  AuthenticatedSettingsRoute._addFileChildren(
+    AuthenticatedSettingsRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAiRoute: typeof AuthenticatedAiRoute
+  AuthenticatedAppointmentsRoute: typeof AuthenticatedAppointmentsRoute
+  AuthenticatedBabyRoute: typeof AuthenticatedBabyRoute
+  AuthenticatedContractionsRoute: typeof AuthenticatedContractionsRoute
+  AuthenticatedDailyRoute: typeof AuthenticatedDailyRoute
+  AuthenticatedDeleteAccountRoute: typeof AuthenticatedDeleteAccountRoute
+  AuthenticatedHelpRoute: typeof AuthenticatedHelpRoute
+  AuthenticatedHomeRoute: typeof AuthenticatedHomeRoute
+  AuthenticatedKicksRoute: typeof AuthenticatedKicksRoute
+  AuthenticatedMedicineRoute: typeof AuthenticatedMedicineRoute
+  AuthenticatedNutritionRoute: typeof AuthenticatedNutritionRoute
+  AuthenticatedPrivacyRoute: typeof AuthenticatedPrivacyRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedReportsRoute: typeof AuthenticatedReportsRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRouteWithChildren
+  AuthenticatedSetupRoute: typeof AuthenticatedSetupRoute
+  AuthenticatedSymptomsRoute: typeof AuthenticatedSymptomsRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAiRoute: AuthenticatedAiRoute,
+  AuthenticatedAppointmentsRoute: AuthenticatedAppointmentsRoute,
+  AuthenticatedBabyRoute: AuthenticatedBabyRoute,
+  AuthenticatedContractionsRoute: AuthenticatedContractionsRoute,
+  AuthenticatedDailyRoute: AuthenticatedDailyRoute,
+  AuthenticatedDeleteAccountRoute: AuthenticatedDeleteAccountRoute,
+  AuthenticatedHelpRoute: AuthenticatedHelpRoute,
+  AuthenticatedHomeRoute: AuthenticatedHomeRoute,
+  AuthenticatedKicksRoute: AuthenticatedKicksRoute,
+  AuthenticatedMedicineRoute: AuthenticatedMedicineRoute,
+  AuthenticatedNutritionRoute: AuthenticatedNutritionRoute,
+  AuthenticatedPrivacyRoute: AuthenticatedPrivacyRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedReportsRoute: AuthenticatedReportsRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRouteWithChildren,
+  AuthenticatedSetupRoute: AuthenticatedSetupRoute,
+  AuthenticatedSymptomsRoute: AuthenticatedSymptomsRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  OnboardingRoute: OnboardingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

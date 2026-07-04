@@ -1,24 +1,39 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { PhoneShell } from "@/components/PhoneShell";
+import { Heart } from "lucide-react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  ssr: false,
+  component: SplashPage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function SplashPage() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const t = setTimeout(async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) navigate({ to: "/home" });
+      else navigate({ to: "/onboarding" });
+    }, 1800);
+    return () => clearTimeout(t);
+  }, [navigate]);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <PhoneShell>
+      <div className="h-full flex flex-col items-center justify-center gradient-soft px-8 relative min-h-[600px]">
+        <div className="relative">
+          <div className="absolute inset-0 rounded-full gradient-primary blur-3xl opacity-40 animate-pulse-ring" />
+          <div className="relative w-32 h-32 rounded-full gradient-primary flex items-center justify-center shadow-2xl">
+            <Heart className="w-14 h-14 text-white" fill="white" strokeWidth={0} />
+          </div>
+        </div>
+        <h1 className="mt-8 font-serif text-5xl text-foreground tracking-tight">Nurture</h1>
+        <p className="mt-2 text-sm text-muted-foreground">Pregnancy Tracker</p>
+        <p className="mt-16 text-xs text-muted-foreground italic">Every journey begins with love</p>
+        <Link to="/onboarding" className="sr-only">Continue</Link>
+      </div>
+    </PhoneShell>
   );
 }
