@@ -61,14 +61,15 @@ function HomePage() {
 
           {baby && (
             <Link to="/baby" className="mt-4 flex items-center gap-4 bg-card rounded-3xl p-4 shadow-card">
-              <div className="w-14 h-14 rounded-2xl bg-primary-soft flex items-center justify-center text-2xl">🍎</div>
-              <div className="flex-1">
-                <div className="text-xs text-muted-foreground">Baby is the size of a</div>
-                <div className="font-serif text-2xl leading-tight">{baby.fruit}</div>
+              <div className="w-14 h-14 rounded-2xl bg-primary-soft flex items-center justify-center text-3xl">🍐</div>
+              <div className="flex-1 min-w-0">
+                <div className="text-[11px] uppercase tracking-wide text-muted-foreground">Baby is the size of a</div>
+                <div className="font-serif text-2xl leading-tight truncate">{baby.fruit}</div>
               </div>
-              <Baby className="w-5 h-5 text-primary" />
+              <Baby className="w-5 h-5 text-primary shrink-0" />
             </Link>
           )}
+
         </div>
 
         <div className="px-5 -mt-3 pb-24 space-y-4">

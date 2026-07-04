@@ -45,28 +45,48 @@ function KicksPage() {
     }
   };
 
+  const progress = Math.min(kicks / 10, 1);
+  const r = 118, c = 2 * Math.PI * r;
+
   return (
     <PhoneShell>
       <AppHeader title="Kick Counter" back />
       <div className="px-6 pb-8 flex flex-col items-center">
-        <div className="text-xs text-muted-foreground mt-2">Session Time</div>
-        <div className="font-serif text-4xl mt-1 tabular-nums">{fmt(elapsed)}</div>
-
-        <button
-          onClick={() => running && setKicks((k) => k + 1)}
-          disabled={!running}
-          className={`mt-8 w-64 h-64 rounded-full transition-all ${running ? "gradient-primary text-primary-foreground animate-pulse-ring shadow-2xl" : "bg-muted text-muted-foreground"} flex flex-col items-center justify-center`}
-        >
-          <div className="font-serif text-8xl leading-none">{kicks}</div>
-          <div className="text-sm font-semibold mt-2 uppercase tracking-widest">Kicks</div>
-        </button>
+        <div className="relative mt-4">
+          <svg viewBox="0 0 260 260" className="w-64 h-64 -rotate-90">
+            <circle cx="130" cy="130" r={r} className="text-muted" stroke="currentColor" strokeWidth="14" fill="none" />
+            <circle cx="130" cy="130" r={r} stroke="url(#kg)" strokeWidth="14" fill="none" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - progress)} />
+            <defs>
+              <linearGradient id="kg" x1="0" x2="1">
+                <stop offset="0%" stopColor="oklch(0.72 0.2 5)" />
+                <stop offset="100%" stopColor="oklch(0.6 0.22 15)" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <button
+            onClick={() => running && setKicks((k) => k + 1)}
+            disabled={!running}
+            className="absolute inset-4 rounded-full bg-card shadow-inner flex flex-col items-center justify-center disabled:opacity-90"
+          >
+            <div className="text-[10px] tracking-widest text-muted-foreground uppercase">Session Time</div>
+            <div className="font-serif text-2xl tabular-nums mt-0.5">{fmt(elapsed)}</div>
+            <div className="font-serif text-6xl leading-none mt-2 text-primary">{kicks}</div>
+            <div className="text-[11px] font-semibold mt-1 uppercase tracking-widest text-muted-foreground">Kicks</div>
+          </button>
+        </div>
 
         <div className="mt-8 w-full">
           {running ? (
-            <button onClick={end} className="w-full py-4 rounded-2xl bg-destructive text-destructive-foreground font-semibold shadow-card">End Session</button>
+            <button onClick={end} className="w-full py-4 rounded-full bg-destructive text-destructive-foreground font-semibold shadow-card">End Session</button>
           ) : (
-            <button onClick={begin} className="w-full py-4 rounded-2xl gradient-primary text-primary-foreground font-semibold shadow-card">Start Session</button>
+            <button onClick={begin} className="w-full py-4 rounded-full gradient-primary text-primary-foreground font-semibold shadow-card">Start Session</button>
           )}
+        </div>
+
+        <div className="mt-8 w-full grid grid-cols-3 gap-3">
+          <Stat label="Sessions" value={String(recentSessions.length)} />
+          <Stat label="Total Kicks" value={String(recentSessions.reduce((a, s) => a + s.kicks, 0))} />
+          <Stat label="Total Time" value={fmt(recentSessions.reduce((a, s) => a + s.duration_seconds, 0))} />
         </div>
 
         {recentSessions.length > 0 && (
@@ -89,6 +109,16 @@ function KicksPage() {
     </PhoneShell>
   );
 }
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="bg-card rounded-2xl p-3 text-center shadow-soft">
+      <div className="font-serif text-xl">{value}</div>
+      <div className="text-[10px] tracking-wide uppercase text-muted-foreground mt-0.5">{label}</div>
+    </div>
+  );
+}
+
 
 function fmt(s: number) {
   const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = s % 60;
