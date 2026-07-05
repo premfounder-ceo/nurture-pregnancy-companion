@@ -3,6 +3,8 @@ import { PhoneShell } from "@/components/PhoneShell";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import motherAsset from "@/assets/mother.png.asset.json";
+import trackAsset from "@/assets/mother-track.jpg.asset.json";
+import companionAsset from "@/assets/mother-companion.jpg.asset.json";
 
 export const Route = createFileRoute("/onboarding")({
   ssr: false,
@@ -18,12 +20,12 @@ const slides = [
   {
     title: "Track What Matters",
     body: "Kicks, contractions, symptoms, meals, sleep and mood — quietly logged, beautifully surfaced.",
-    emoji: "💗",
+    image: trackAsset.url,
   },
   {
     title: "Your Calm Companion",
     body: "Meet Nurture AI: a supportive assistant for everyday pregnancy questions, whenever you need her.",
-    emoji: "✨",
+    image: companionAsset.url,
   },
 ] as Array<{ title: string; body: string; emoji?: string; image?: string }>;
 
