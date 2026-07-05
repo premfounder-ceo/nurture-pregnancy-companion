@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PhoneShell } from "@/components/PhoneShell";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import motherAsset from "@/assets/mother.png.asset.json";
 
 export const Route = createFileRoute("/onboarding")({
   ssr: false,
@@ -12,7 +13,7 @@ const slides = [
   {
     title: "Step Into Motherhood",
     body: "A peaceful, private space to guide you through every week of your pregnancy.",
-    emoji: "🌸",
+    image: motherAsset.url,
   },
   {
     title: "Track What Matters",
@@ -24,7 +25,7 @@ const slides = [
     body: "Meet Nurture AI: a supportive assistant for everyday pregnancy questions, whenever you need her.",
     emoji: "✨",
   },
-];
+] as Array<{ title: string; body: string; emoji?: string; image?: string }>;
 
 function OnboardingPage() {
   const [i, setI] = useState(0);
@@ -38,7 +39,11 @@ function OnboardingPage() {
             <div className="absolute inset-0 rounded-[42%] gradient-primary blur-3xl opacity-30 scale-110" />
             <div className="relative w-56 h-72 rounded-[42%] bg-gradient-to-b from-[oklch(0.94_0.06_15)] via-[oklch(0.92_0.08_5)] to-[oklch(0.86_0.11_355)] shadow-2xl flex items-end justify-center overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,oklch(0.98_0.02_20/0.7),transparent_60%)]" />
-              <div className="relative pb-6 text-7xl">{s.emoji}</div>
+              {s.image ? (
+                <img src={s.image} alt={s.title} className="relative h-full w-full object-cover object-top" />
+              ) : (
+                <div className="relative pb-6 text-7xl">{s.emoji}</div>
+              )}
             </div>
           </div>
           <h1 className="mt-10 font-serif text-[38px] leading-[1.05] text-foreground">{s.title}</h1>
