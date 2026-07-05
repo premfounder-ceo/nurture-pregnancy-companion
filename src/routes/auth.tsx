@@ -4,7 +4,8 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { toast } from "sonner";
-import { Heart, Mail, Lock, User } from "lucide-react";
+import logoAsset from "@/assets/logo.png.asset.json";
+import { Mail, Lock, User } from "lucide-react";
 import { z } from "zod";
 
 export const Route = createFileRoute("/auth")({
@@ -75,9 +76,7 @@ function AuthPage() {
     <PhoneShell>
       <div className="min-h-[780px] gradient-soft px-6 pt-6 pb-10">
         <div className="flex items-center gap-2 mb-8">
-          <div className="w-10 h-10 rounded-full gradient-primary flex items-center justify-center">
-            <Heart className="w-5 h-5 text-white" fill="white" strokeWidth={0} />
-          </div>
+          <img src={logoAsset.url} alt="Nurture" className="w-10 h-10 rounded-[28%] object-cover shadow-soft" />
           <span className="font-serif text-2xl">Nurture</span>
         </div>
 

@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { PhoneShell } from "@/components/PhoneShell";
-import { Heart } from "lucide-react";
+import logoAsset from "@/assets/logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   ssr: false,
@@ -24,10 +24,12 @@ function SplashPage() {
     <PhoneShell>
       <div className="h-full flex flex-col items-center justify-center gradient-soft px-8 relative min-h-[600px]">
         <div className="relative">
-          <div className="absolute inset-0 rounded-full gradient-primary blur-3xl opacity-40 animate-pulse-ring" />
-          <div className="relative w-32 h-32 rounded-full gradient-primary flex items-center justify-center shadow-2xl">
-            <Heart className="w-14 h-14 text-white" fill="white" strokeWidth={0} />
-          </div>
+          <div className="absolute inset-0 rounded-[28%] gradient-primary blur-3xl opacity-40 animate-pulse-ring" />
+          <img
+            src={logoAsset.url}
+            alt="Nurture"
+            className="relative w-32 h-32 rounded-[28%] shadow-2xl object-cover"
+          />
         </div>
         <h1 className="mt-8 font-serif text-5xl text-foreground tracking-tight">Nurture</h1>
         <p className="mt-2 text-sm text-muted-foreground">Pregnancy Tracker</p>
