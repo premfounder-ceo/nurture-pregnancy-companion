@@ -4,7 +4,8 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
 import { toast } from "sonner";
-import { Heart, Mail, Lock, User } from "lucide-react";
+import logoAsset from "@/assets/logo.png.asset.json";
+import { Mail, Lock, User } from "lucide-react";
 import { z } from "zod";
 
 export const Route = createFileRoute("/auth")({
