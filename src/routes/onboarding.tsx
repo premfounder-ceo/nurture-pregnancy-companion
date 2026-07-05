@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PhoneShell } from "@/components/PhoneShell";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import motherAsset from "@/assets/mother.png.asset.json";
 
 export const Route = createFileRoute("/onboarding")({
   ssr: false,
@@ -12,7 +13,7 @@ const slides = [
   {
     title: "Step Into Motherhood",
     body: "A peaceful, private space to guide you through every week of your pregnancy.",
-    emoji: "🌸",
+    image: motherAsset.url,
   },
   {
     title: "Track What Matters",
@@ -24,7 +25,7 @@ const slides = [
     body: "Meet Nurture AI: a supportive assistant for everyday pregnancy questions, whenever you need her.",
     emoji: "✨",
   },
-];
+] as Array<{ title: string; body: string; emoji?: string; image?: string }>;
 
 function OnboardingPage() {
   const [i, setI] = useState(0);
