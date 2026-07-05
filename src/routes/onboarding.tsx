@@ -39,7 +39,11 @@ function OnboardingPage() {
             <div className="absolute inset-0 rounded-[42%] gradient-primary blur-3xl opacity-30 scale-110" />
             <div className="relative w-56 h-72 rounded-[42%] bg-gradient-to-b from-[oklch(0.94_0.06_15)] via-[oklch(0.92_0.08_5)] to-[oklch(0.86_0.11_355)] shadow-2xl flex items-end justify-center overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,oklch(0.98_0.02_20/0.7),transparent_60%)]" />
-              <div className="relative pb-6 text-7xl">{s.emoji}</div>
+              {s.image ? (
+                <img src={s.image} alt={s.title} className="relative h-full w-full object-cover object-top" />
+              ) : (
+                <div className="relative pb-6 text-7xl">{s.emoji}</div>
+              )}
             </div>
           </div>
           <h1 className="mt-10 font-serif text-[38px] leading-[1.05] text-foreground">{s.title}</h1>
