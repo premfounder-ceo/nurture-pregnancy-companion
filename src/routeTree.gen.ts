@@ -13,6 +13,7 @@ import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedTermsRouteImport } from './routes/_authenticated/terms'
 import { Route as AuthenticatedSymptomsRouteImport } from './routes/_authenticated/symptoms'
 import { Route as AuthenticatedSetupRouteImport } from './routes/_authenticated/setup'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
@@ -50,6 +51,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedTermsRoute = AuthenticatedTermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedSymptomsRoute = AuthenticatedSymptomsRouteImport.update({
   id: '/symptoms',
@@ -167,6 +173,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AuthenticatedSettingsRouteWithChildren
   '/setup': typeof AuthenticatedSetupRoute
   '/symptoms': typeof AuthenticatedSymptomsRoute
+  '/terms': typeof AuthenticatedTermsRoute
   '/settings/reminders': typeof AuthenticatedSettingsRemindersRoute
 }
 export interface FileRoutesByTo {
@@ -190,6 +197,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AuthenticatedSettingsRouteWithChildren
   '/setup': typeof AuthenticatedSetupRoute
   '/symptoms': typeof AuthenticatedSymptomsRoute
+  '/terms': typeof AuthenticatedTermsRoute
   '/settings/reminders': typeof AuthenticatedSettingsRemindersRoute
 }
 export interface FileRoutesById {
@@ -215,6 +223,7 @@ export interface FileRoutesById {
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteWithChildren
   '/_authenticated/setup': typeof AuthenticatedSetupRoute
   '/_authenticated/symptoms': typeof AuthenticatedSymptomsRoute
+  '/_authenticated/terms': typeof AuthenticatedTermsRoute
   '/_authenticated/settings/reminders': typeof AuthenticatedSettingsRemindersRoute
 }
 export interface FileRouteTypes {
@@ -240,6 +249,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/setup'
     | '/symptoms'
+    | '/terms'
     | '/settings/reminders'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -263,6 +273,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/setup'
     | '/symptoms'
+    | '/terms'
     | '/settings/reminders'
   id:
     | '__root__'
@@ -287,6 +298,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings'
     | '/_authenticated/setup'
     | '/_authenticated/symptoms'
+    | '/_authenticated/terms'
     | '/_authenticated/settings/reminders'
   fileRoutesById: FileRoutesById
 }
@@ -326,6 +338,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/terms': {
+      id: '/_authenticated/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof AuthenticatedTermsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/symptoms': {
       id: '/_authenticated/symptoms'
@@ -487,6 +506,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRouteWithChildren
   AuthenticatedSetupRoute: typeof AuthenticatedSetupRoute
   AuthenticatedSymptomsRoute: typeof AuthenticatedSymptomsRoute
+  AuthenticatedTermsRoute: typeof AuthenticatedTermsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -507,6 +527,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSettingsRoute: AuthenticatedSettingsRouteWithChildren,
   AuthenticatedSetupRoute: AuthenticatedSetupRoute,
   AuthenticatedSymptomsRoute: AuthenticatedSymptomsRoute,
+  AuthenticatedTermsRoute: AuthenticatedTermsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
