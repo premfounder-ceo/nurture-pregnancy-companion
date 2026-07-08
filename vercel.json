@@ -1,9 +1,5 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*",
-      "destination": "https://nurturepregnancytracker.lovable.app/:path*",
-      "permanent": false
-    }
-  ]
+  "buildCommand": "bun run build",
+  "installCommand": "bun install",
+  "framework": null
 }
