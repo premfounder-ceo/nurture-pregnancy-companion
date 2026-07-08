@@ -20,7 +20,8 @@ function SettingsPage() {
         <Group title="Account">
           <Row icon={<Bell className="w-4 h-4" />} label="Reminders" to="/settings/reminders" />
           <Row icon={<Lock className="w-4 h-4" />} label="Privacy" to="/privacy" />
-          <Row icon={<Database className="w-4 h-4" />} label="Data & Backup" value="Auto-synced" last />
+          <Row icon={<Database className="w-4 h-4" />} label="Data & Backup" value="Auto-synced" />
+          <Row icon={<span className="text-xs font-semibold">T&C</span>} label="Terms & Conditions" to="/terms" last />
         </Group>
       </div>
     </PhoneShell>
