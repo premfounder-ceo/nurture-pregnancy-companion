@@ -32,7 +32,10 @@ function PrivacyPage() {
         <Section title="5. Children">
           Nurture is not directed to children under 13.
         </Section>
-        <Section title="6. Contact">
+        <Section title="6. Trust & Safety / Compliance">
+          This app complies with all applicable Google Play Developer Program Policies, including User Data, Permissions, Privacy, Ads, Device & Network Abuse, Malware, Spam, and Intellectual Property policies. It provides a safe, secure, and transparent user experience.
+        </Section>
+        <Section title="7. Contact">
           Questions? Reach us from Help & Support inside the app.
         </Section>
       </div>
