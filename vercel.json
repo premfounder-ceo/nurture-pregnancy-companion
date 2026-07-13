@@ -1,5 +1,11 @@
 {
   "buildCommand": "bun run build",
   "installCommand": "bun install",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "https://nurturepregnancytracker.lovable.app/:path*"
+    }
+  ]
 }
